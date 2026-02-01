@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Besso姫路 | 帰らなくていい、特別な女子会を。</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-warm: #FDFBF7; /* 温かみのあるオフホワイト */
+            --accent-blue: #8D99AE; /* 落ち着いたブルーグレー */
+            --text-main: #4A4A4A;
+            --text-sub: #7A7A7A;
+            --white: #FFFFFF;
+            --border-soft: rgba(141, 153, 174, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+            background-color: var(--bg-warm);
+            color: var(--text-main);
+            line-height: 2.2;
+            letter-spacing: 0.15em;
+            overflow-x: hidden;
+        }
+
+        /* --- Components --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .text-center { text-align: center; }
+
+        .label {
+            display: block;
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            letter-spacing: 0.5em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 40px 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #f5f2ed;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1590374585152-ca0e8194c0d6?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            opacity: 0.35;
+            filter: sepia(10%) contrast(90%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.4rem, 5vw, 2.4rem);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* --- PASONA Layout --- */
+        .organic-row {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+
+        .organic-row.reverse { flex-direction: row-reverse; }
+
+        .image-frame {
+            flex: 1.2;
+            position: relative;
+        }
+
+        .image-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 2px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .text-block {
+            flex: 1;
+        }
+
+        /* --- Chef Menu Section --- */
+        .chef-intro {
+            background-color: #F8F6F2;
+            padding: 120px 0;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 4px;
+            transition: 0.4s;
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border-radius: 2px;
+        }
+
+        .menu-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: var(--bg-warm);
+            padding: 2px 12px;
+            margin-bottom: 15px;
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .menu-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-list {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        .menu-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .menu-list li::before {
+            content: "・";
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- Price Table --- */
+        .price-box {
+            background: var(--white);
+            padding: 80px 60px;
+            margin-top: 60px;
+            border-radius: 4px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 25px 0;
+            border-bottom: 1px dotted var(--border-soft);
+        }
+
+        .price-total {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid var(--bg-warm);
+        }
+
+        .price-amount {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+
+        /* --- CTA --- */
+        .btn {
+            display: inline-block;
+            padding: 22px 80px;
+            background: var(--accent-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 0;
+            transition: 0.4s;
+            margin-top: 40px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(141, 153, 174, 0.2);
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 0;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            background-color: var(--bg-warm);
+        }
+
+        @media (max-width: 900px) {
+            .organic-row, .organic-row.reverse { flex-direction: column; gap: 50px; }
+            .menu-grid { grid-template-columns: 1fr; }
+            section { padding: 80px 0; }
+            .price-box { padding: 40px 20px; }
+            h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">Besso Himeji</a>
+            <div style="font-size: 0.7rem; color: var(--accent-blue); letter-spacing: 0.2em;">一日二組限定の宿</div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-content reveal">
+            <span class="label">Stay & Private Dinner</span>
+            <h1>姫路で、帰らなくていい女子会を。</h1>
+            <p>いつものお店。いつもの流れ。終電前の解散。<br>
+            その「当たり前」を、温かな記憶に変える選択。</p>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section>
+        <div class="container">
+            <div class="organic-row reveal">
+                <div class="image-frame">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" alt="女子会の風景">
+                </div>
+                <div class="text-block">
+                    <span class="label">Problem</span>
+                    <h2>二十二時を過ぎると、<br>どこか焦っている夜。</h2>
+                    <p>
+                        楽しいはずの女子会。でも心のどこかで、<br>
+                        「終電」「タクシーの予約」「明日の家事」を<br>
+                        気にしていませんか？
+                    </p>
+                    <p>
+                        「もう少し話したい」「もう一杯だけ飲みたい」<br>
+                        そんな本音に蓋をして駅へ急ぐ、<br>
+                        姫路に住むあなたへ。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affinity -->
+    <section style="background-color: #F8F6F2;">
+        <div class="container">
+            <div class="organic-row reverse reveal">
+                <div class="image-frame">
+                    <img src="https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?auto=format&fit=crop&q=80&w=1000" alt="温かみのあるインテリア">
+                </div>
+                <div class="text-block">
+                    <span class="label">Affinity</span>
+                    <h2>「地元で泊まる」という、<br>最高に贅沢な盲点。</h2>
+                    <p>
+                        「わざわざ姫路で泊まるなんて」<br>
+                        そう思っていたのは、私たちも同じでした。
+                    </p>
+                    <p>
+                        でも、一棟貸しの宿『Besso姫路』に一歩入れば、<br>
+                        そこは日常を忘れさせる別世界。<br>
+                        リネンや木の質感に包まれ、移動に時間をかけず、<br>
+                        「非日常」へ溶け込む贅沢がここにあります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution & Chef Menu -->
+    <section class="chef-intro">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="label">Solution</span>
+                <h2>レストランより自由で、<br>家より贅沢な。</h2>
+                <p>プロの料理人があなたたちのためだけに腕を振るう、<br>二つの特別なディナースタイルをご用意しました。</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Buffet Style -->
+                <div class="menu-card reveal">
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=800" alt="ビュッフェスタイルの料理" class="menu-image">
+                    <span class="menu-tag">Style 01</span>
+                    <h3>賑やかに楽しむ、<br>ビュッフェスタイル</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-sub);">
+                        お酒を片手に、好きなものを好きなだけ。<br>
+                        肩肘張らず、自由な時間を楽しみたいグループに。
+                    </p>
+                    <ul class="menu-list">
+                        <li>地元の新鮮野菜を使った彩りテリーヌ</li>
+                        <li>播磨灘の魚介のアヒージョ</li>
+                        <li>厳選牛のローストビーフ 〜特製ソース〜</li>
+                        <li>季節のフルーツと手作りドルチェ</li>
+                    </ul>
+                </div>
+
+                <!-- Course Style -->
+                <div class="menu-card reveal">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" alt="コース料理の風景" class="menu-image">
+                    <span class="menu-tag">Style 02</span>
+                    <h3>会話を嗜む、<br>フルコーススタイル</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-sub);">
+                        一皿一皿、ゆっくりと運ばれてくる出来立てを。<br>
+                        大切な友人との対話をじっくり楽しみたい夜に。
+                    </p>
+                    <ul class="menu-list">
+                        <li>アミューズ：一口の幸福</li>
+                        <li>前菜：五感で味わう季節のオードブル</li>
+                        <li>魚料理：本日の水揚げ 鮮魚のポワレ</li>
+                        <li>肉料理：姫路和牛のグリル 旬の地野菜を添えて</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience: 酔ってからが、本番 -->
+    <section>
+        <div class="container">
+            <div class="organic-row reveal">
+                <div class="text-block">
+                    <span class="label">Memory</span>
+                    <h2>酔ってからが、本番。</h2>
+                    <p>
+                        「もう一杯いこか」が自然に出る夜。<br>
+                        メイクを落として、パジャマになって、ソファでくつろぐ。<br>
+                        帰らなくていいから、話が途中で終わらない。
+                    </p>
+                    <p>
+                        仕事のこと、家族のこと、昔の話。<br>
+                        翌朝、出張料理人が準備した朝食を囲み、<br>
+                        「昨日はほんま楽しかったな」と笑い合う。<br>
+                        それまで含めて、最高の女子会です。
+                    </p>
+                </div>
+                <div class="image-frame">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1000" alt="談笑する友人たち">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer -->
+    <section style="background-color: #F8F6F2;">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="label">Offer</span>
+                <h2>実は、賢い選択。</h2>
+                <p>レストラン＋二次会＋代行・タクシー費用と比べてみてください。<br>
+                この「安心感」と「贅沢」を、驚くほど身近に。</p>
+
+                <div class="price-box">
+                    <div class="price-item">
+                        <span>一棟貸切宿泊費（6名利用時 / お一人様）</span>
+                        <span>5,500円〜</span>
+                    </div>
+                    <div class="price-item">
+                        <span>出張料理（夕食・朝食 / お一人様）</span>
+                        <span>5,500円〜</span>
+                    </div>
+                    <div class="price-total">
+                        <span style="font-size: 0.85rem; color: var(--text-sub);">お一人様 合計目安</span><br>
+                        <span class="price-amount">11,000円</span><span style="font-size: 1.1rem; color: var(--accent-blue);">（税込）〜</span>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-sub); margin-top: 30px; line-height: 1.8;">
+                        ※平日料金を基準としています。休前日やシーズンにより料金は変動します。<br>
+                        ※お飲み物は自由にお持ち込みいただけます。お好きなワインや地酒をどうぞ。<br>
+                        ※出張料理は4名様より承ります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Narrow Down & Action -->
+    <section>
+        <div class="container text-center reveal">
+            <span class="label">Limited to 2 groups</span>
+            <h2>一日二組限定の、隠れ家。</h2>
+            <p style="margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Besso姫路は、わずか二棟だけの小さなお宿です。<br>
+                誰でも使える場所ではなく、この価値を知っている方だけに選ばれる場所でありたい。<br><br>
+                週末や休前日は数ヶ月前から予約が埋まることも少なくありません。<br>
+                「次はここで集まろう」<br>
+                その一言から、最高の夜を計画しませんか？
+            </p>
+            
+            <a href="#" class="btn" onclick="showMessage(event)">空き状況を確認・相談する</a>
+            <p style="margin-top: 25px; font-size: 0.8rem; color: var(--text-sub);">※まずは気軽なご相談からどうぞ</p>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <p>&copy; Besso Himeji. <br>Emotional Organic Memories in Himeji.</p>
+    </footer>
+
+    <script>
+        // Reveal animation on scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Form placeholder
+        function showMessage(e) {
+            e.preventDefault();
+            const msg = document.createElement('div');
+            msg.style.position = 'fixed';
+            msg.style.top = '50%';
+            msg.style.left = '50%';
+            msg.style.transform = 'translate(-50%, -50%)';
+            msg.style.background = '#FDFBF7';
+            msg.style.border = '1px solid #8D99AE';
+            msg.style.padding = '50px';
+            msg.style.zIndex = '2000';
+            msg.style.textAlign = 'center';
+            msg.style.boxShadow = '0 30px 60px rgba(0,0,0,0.12)';
+            msg.style.width = '90%';
+            msg.style.maxWidth = '500px';
+            msg.innerHTML = `
+                <h3 style="margin-bottom:20px; font-weight:500;">お問い合わせ</h3>
+                <p style="margin-bottom:30px; font-size:0.9rem;">現在、デモ版のため外部への送信は停止しています。<br>実際のサイトではここからLINEやフォームへ遷移します。</p>
+                <button onclick="this.parentElement.remove()" style="padding:12px 40px; border:1px solid #8D99AE; background:transparent; color:#8D99AE; cursor:pointer; font-family:'Noto Sans JP';">閉じる</button>
+            `;
+            document.body.appendChild(msg);
+        }
+    </script>
+</body>
+</html>
