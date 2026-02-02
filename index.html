@@ -3,267 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Besso姫路 | 帰らなくていい女子会 - 出張料理人と過ごす贅沢な一夜</title>
+    <title>Besso姫路 | 帰らなくていい、特別な女子会</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #F5F5F0;
-            --accent-gold: #8C7654;
-            --text-main: #333333;
-            --border-radius-lg: 60px;
+            --color-main: #2C3E50;
+            --color-accent: #E67E22;
+            --color-bg: #F9F9F7;
+            --color-text: #333333;
         }
 
         body {
             font-family: 'Shippori Mincho', serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
             overflow-x: hidden;
-            letter-spacing: 0.05em;
         }
 
-        /* Noise Texture Implementation */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.04;
-            z-index: 9999;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3ExternalIcon%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        .font-sans { font-family: 'Noto Sans JP', sans-serif; }
+
+        /* Bento UI Grid Settings */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 240px;
+            gap: 1.5rem;
         }
 
-        .font-sans-jp { font-family: 'Noto Sans JP', sans-serif; }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 200px;
+                gap: 1rem;
+            }
+        }
 
-        /* Kinetic Typography & Animations */
-        .kinetic-text {
+        .bento-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: #fff;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .bento-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .bento-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(44, 62, 80, 0.8) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .bento-item:hover .bento-overlay {
+            opacity: 1;
+            background: linear-gradient(to top, rgba(230, 126, 34, 0.9) 0%, transparent 80%);
+        }
+
+        /* Animation */
+        .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
-        .kinetic-text.visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-        .letter-spacing-anim {
-            letter-spacing: 0.5em;
-            transition: letter-spacing 1.5s ease;
-        }
-        .visible .letter-spacing-anim {
-            letter-spacing: 0.2em;
-        }
 
-        /* Organic Shapes */
-        .organic-card {
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-        }
-        .organic-shape-top {
-            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-        }
-        .organic-image {
-            border-radius: 40px;
-            transition: transform 0.6s ease;
-        }
-        .organic-image:hover {
-            transform: scale(1.03);
-        }
-
-        /* Buttons */
-        .cta-button {
-            background-color: var(--accent-gold);
+        /* CTA Button */
+        .btn-cta {
+            background-color: var(--color-accent);
             color: white;
-            border-radius: 100px;
             padding: 1.25rem 3rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 20px -10px rgba(140, 118, 84, 0.5);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(230, 126, 34, 0.4);
         }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -10px rgba(140, 118, 84, 0.6);
-        }
-
-        /* Vertical text for accents */
-        .vertical-rl {
-            writing-mode: vertical-rl;
-        }
-
-        /* Floating effect */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating {
-            animation: float 4s ease-in-out infinite;
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(230, 126, 34, 0.5);
+            background-color: #d35400;
         }
     </style>
 </head>
 <body>
 
     <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Besso姫路 雰囲気" class="w-full h-full object-cover opacity-60">
+            <img src="https://images.unsplash.com/photo-1590523741477-2484c01f6e43?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Besso姫路 空間" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/40"></div>
         </div>
         
-        <div class="relative z-10 text-center max-w-5xl">
-            <p class="font-sans-jp text-sm tracking-[0.4em] mb-12 kinetic-text" id="hero-sub">HIMEJI PRIVATE VILLA STAY</p>
-            <h1 class="text-5xl md:text-8xl leading-tight mb-12 kinetic-text" id="hero-main">
-                <span class="block mb-4">帰らなくていい、</span>
-                <span class="letter-spacing-anim">女子会。</span>
+        <div class="relative z-10 text-center text-white px-6">
+            <p class="font-sans tracking-[0.4em] text-sm md:text-base mb-8 reveal">HIMEJI PRIVATE VILLA EXPERIENCE</p>
+            <h1 class="text-5xl md:text-7xl leading-tight mb-12 reveal" style="transition-delay: 0.2s">
+                帰らなくていい、<br><span class="text-[#E67E22]">女子会。</span>
             </h1>
-            <div class="w-px h-32 bg-[#8C7654] mx-auto opacity-50 kinetic-text"></div>
-        </div>
-
-        <div class="absolute right-8 bottom-24 hidden lg:block kinetic-text">
-            <p class="vertical-rl text-lg tracking-[0.5em] font-light italic">
-                一棟貸切、出張料理人と過ごす静かな贅沢
-            </p>
-        </div>
-    </header>
-
-    <!-- Problem (新PASONA) -->
-    <section class="py-32 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-24">
-                <span class="text-[#8C7654] font-sans-jp tracking-widest text-sm mb-4 block kinetic-text">PROBLEM</span>
-                <h2 class="text-3xl md:text-4xl leading-relaxed kinetic-text">
-                    22時を過ぎると、<br>どこかで「時計」を気にしていませんか？
-                </h2>
-            </div>
-            <div class="space-y-12 text-lg md:text-xl font-light text-gray-700 leading-loose kinetic-text">
-                <p>いつものお店、いつもの流れ。終電前に解散。</p>
-                <p>姫路に住んでいるから、「泊まる」という発想自体がなかった。</p>
-                <p class="text-2xl text-[#8C7654] font-normal">でも本当は、もう少し飲みたい。<br>もう少し、話したい。</p>
-            </div>
+            <div class="w-px h-24 bg-white/50 mx-auto reveal" style="transition-delay: 0.4s"></div>
         </div>
     </section>
 
-    <!-- Affinity (新PASONA) -->
-    <section class="py-32 bg-white organic-shape-top shadow-inner">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div class="kinetic-text">
-                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000" 
-                     alt="内装" class="organic-image shadow-2xl">
-            </div>
-            <div class="space-y-8 kinetic-text">
-                <span class="text-[#8C7654] font-sans-jp tracking-widest text-sm block">AFFINITY</span>
-                <h2 class="text-3xl leading-snug">「ここ、本当に姫路なん？」<br>そう思う空間が、すぐ近くにあった。</h2>
-                <p class="font-light text-gray-600 leading-relaxed">
-                    姫路にある一棟貸しの宿、Besso姫路。<br>
-                    観光客向けだと思われがちだけれど、実は地元の女性にこそちょうどいい場所。
-                    おしゃれで、清潔で、生活感がない。移動時間をゼロにして、非日常へと飛び込む贅沢。
+    <!-- Problem (PASONA) -->
+    <section class="py-32 bg-[#2C3E50] text-white overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-6 block reveal">PROBLEM</span>
+            <h2 class="text-3xl md:text-4xl leading-relaxed mb-12 reveal">
+                22時を過ぎると、<br>どこかで「時計」を気にしていませんか？
+            </h2>
+            <div class="space-y-8 font-light text-gray-300 leading-loose reveal">
+                <p>いつものお店、いつもの流れ、終電前に解散。</p>
+                <p>姫路に住んでいるから、「泊まる」という発想自体がなかった。</p>
+                <p class="text-xl md:text-2xl text-white font-normal border-y border-white/10 py-8 inline-block">
+                    でも本当は、もう少し飲みたい。<br>もう少し話したい。ゆっくり過ごしたい。
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Solution & Offer (新PASONA) -->
+    <!-- Affinity & Solution (Bento UI: Facilities) -->
     <section class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-24">
-                <span class="text-[#8C7654] font-sans-jp tracking-widest text-sm mb-4 block kinetic-text">SOLUTION & OFFER</span>
-                <h2 class="text-3xl md:text-5xl kinetic-text">レストランでも家でもない、<br>「出張料理」という極上の選択</h2>
+            <div class="mb-20 text-center">
+                <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-4 block">FACILITIES</span>
+                <h2 class="text-4xl">雑誌の1ページのような、<br>非日常がすぐそばに。</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Plan 1: Buffet -->
-                <div class="bg-white organic-card shadow-sm kinetic-text group">
-                    <div class="relative h-80 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=1000" 
-                             alt="ビュッフェプラン" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-xs font-sans-jp">PLAN 01</div>
-                    </div>
-                    <div class="p-10 space-y-6">
-                        <h3 class="text-2xl font-bold">① ビュッフェスタイル</h3>
-                        <p class="text-gray-600 font-sans-jp font-light leading-relaxed">
-                            お好きなものを、お好きなタイミングで。自由な会話を妨げない、カジュアルながらも華やかなスタイル。地元の旬彩をふんだんに。
-                        </p>
-                        <div class="pt-6 border-t border-gray-100 flex justify-between items-end">
-                            <span class="font-sans-jp text-sm text-gray-400">出張料理（1回〜）</span>
-                            <span class="text-xl font-bold text-[#8C7654]">33,000円<span class="text-sm font-normal text-gray-400 ml-1">〜 / 回</span></span>
-                        </div>
+            <div class="bento-grid">
+                <!-- Living (Large) -->
+                <div class="bento-item col-span-2 row-span-2 reveal">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1000" alt="リビングルーム">
+                    <div class="bento-overlay">
+                        <h3 class="text-2xl font-bold">LIVING</h3>
+                        <p class="font-sans text-sm mt-2">語り尽くせない夜を受け止める、開放的なダイニングとソファ。</p>
                     </div>
                 </div>
-
-                <!-- Plan 2: Course -->
-                <div class="bg-white organic-card shadow-sm kinetic-text group">
-                    <div class="relative h-80 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" 
-                             alt="コース料理プラン" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-xs font-sans-jp">PLAN 02</div>
+                <!-- Bath -->
+                <div class="bento-item col-span-2 row-span-1 reveal" style="transition-delay: 0.1s">
+                    <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=1000" alt="バスルーム">
+                    <div class="bento-overlay">
+                        <h3 class="text-xl font-bold">BATH</h3>
+                        <p class="font-sans text-sm mt-1">一日の疲れを癒す、清潔でモダンなバスルーム。</p>
                     </div>
-                    <div class="p-10 space-y-6">
-                        <h3 class="text-2xl font-bold">② 本格コース料理スタイル</h3>
-                        <p class="text-gray-600 font-sans-jp font-light leading-relaxed">
-                            専属の料理人が目の前で仕上げる美食の数々。レストランを貸し切るような高揚感と、家のようなリラックスが共存する時間。
-                        </p>
-                        <div class="pt-6 border-t border-gray-100 flex justify-between items-end">
-                            <span class="font-sans-jp text-sm text-gray-400">お一人様目安（6名時）</span>
-                            <span class="text-xl font-bold text-[#8C7654]">5,500円<span class="text-sm font-normal text-gray-400 ml-1">〜 / 人</span></span>
-                        </div>
+                </div>
+                <!-- Bedroom -->
+                <div class="bento-item col-span-1 row-span-1 reveal" style="transition-delay: 0.2s">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=1000" alt="ベッドルーム">
+                    <div class="bento-overlay">
+                        <h3 class="text-lg font-bold">BEDROOM</h3>
+                    </div>
+                </div>
+                <!-- Amenity -->
+                <div class="bento-item col-span-1 row-span-1 reveal" style="transition-delay: 0.3s">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=1000" alt="アメニティ">
+                    <div class="bento-overlay">
+                        <h3 class="text-lg font-bold">AMENITY</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Emotional Section -->
-    <section class="py-32 relative">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-5xl leading-tight mb-16 kinetic-text">酔ってからが、本番。</h2>
-            <div class="space-y-8 font-light text-lg leading-loose kinetic-text">
-                <p>ソファでくつろいで、メイクを落として、パジャマでも、話は続く。</p>
-                <p>仕事のこと、家のこと、昔の話。</p>
-                <p>帰らなくていいから、話が途中で終わらない。<br>酔ってから生まれる、本音の時間。</p>
+    <!-- Catering Menu (Offer: Bento UI Style) -->
+    <section class="py-32 bg-[#F0F0EA] px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 text-center">
+                <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-4 block">CATERING MENU</span>
+                <h2 class="text-4xl">出張料理人による、<br>二人だけの極上レストラン</h2>
             </div>
-            <div class="mt-20 floating">
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1000" 
-                     alt="夜の談笑" class="organic-image shadow-xl max-w-lg mx-auto">
+
+            <div class="bento-grid">
+                <!-- Buffet Style -->
+                <div class="bento-item col-span-2 row-span-2 reveal">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000" alt="ビュッフェスタイル">
+                    <div class="bento-overlay">
+                        <span class="bg-white/20 backdrop-blur-sm text-[10px] px-2 py-1 rounded-sm mb-2 w-fit">STYLE 01</span>
+                        <h3 class="text-2xl font-bold">ビュッフェ・スタイル</h3>
+                        <p class="font-sans text-sm mt-2">好きなものを好きなだけ。会話を遮らないカジュアルな贅沢。</p>
+                    </div>
+                </div>
+                <!-- Course Style -->
+                <div class="bento-item col-span-2 row-span-2 reveal" style="transition-delay: 0.1s">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" alt="コース料理スタイル">
+                    <div class="bento-overlay">
+                        <span class="bg-white/20 backdrop-blur-sm text-[10px] px-2 py-1 rounded-sm mb-2 w-fit">STYLE 02</span>
+                        <h3 class="text-2xl font-bold">コース・スタイル</h3>
+                        <p class="font-sans text-sm mt-2">目の前で仕上げる美食。特別な夜にふさわしい本格コース。</p>
+                    </div>
+                </div>
+                <!-- Morning -->
+                <div class="bento-item col-span-4 row-span-1 reveal" style="transition-delay: 0.2s">
+                    <div class="absolute inset-0 flex items-center justify-between px-12 z-20 pointer-events-none">
+                        <div class="text-white max-w-md">
+                            <h3 class="text-2xl font-bold mb-2">Morning After</h3>
+                            <p class="font-sans text-sm">翌朝の朝食まで、出張料理人がサポート。片付けを気にせず、コーヒーの香りで目覚める幸せ。</p>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?auto=format&fit=crop&q=80&w=1500" alt="朝食" class="brightness-75">
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing (Narrow down) -->
-    <section class="py-32 px-6 bg-[#F0F0EA]">
-        <div class="max-w-4xl mx-auto organic-card bg-white p-12 md:p-20 shadow-lg kinetic-text">
+    <section class="py-32 px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-12 md:p-20 shadow-xl reveal">
             <div class="text-center mb-16">
-                <span class="text-[#8C7654] font-sans-jp tracking-widest text-sm mb-4 block">PRICE</span>
-                <h2 class="text-3xl">実は、現実的な贅沢。</h2>
+                <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-4 block">PRICING</span>
+                <h2 class="text-3xl">実は、現実的な賢い選択。</h2>
+                <p class="font-sans text-gray-400 mt-4">レストラン＋二次会＋移動代と比べてください</p>
             </div>
 
-            <div class="space-y-12">
-                <div class="flex flex-col md:flex-row justify-between border-b border-gray-100 pb-8">
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">宿泊（一棟貸切）</h4>
-                        <p class="text-sm text-gray-400 font-sans-jp">平日：33,000円 / 休日前：45,100円</p>
+            <div class="space-y-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-gray-100">
+                    <div class="text-center md:text-left">
+                        <h4 class="text-xl font-bold">宿泊料金</h4>
+                        <p class="font-sans text-sm text-gray-500 mt-1">平日：33,000円／休日前：45,100円（一棟）</p>
                     </div>
-                    <div class="mt-4 md:mt-0 text-right">
-                        <span class="text-sm text-gray-500 font-sans-jp">6人利用なら1人あたり</span>
-                        <p class="text-2xl font-bold text-[#8C7654]">5,500円<span class="text-sm text-gray-400">〜</span></p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row justify-between border-b border-gray-100 pb-8">
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">出張料理</h4>
-                        <p class="text-sm text-gray-400 font-sans-jp">ディナー＋朝食準備含む</p>
-                    </div>
-                    <div class="mt-4 md:mt-0 text-right">
-                        <span class="text-sm text-gray-500 font-sans-jp">お一人様あたり</span>
-                        <p class="text-2xl font-bold text-[#8C7654]">5,500円<span class="text-sm text-gray-400">〜</span></p>
+                    <div class="mt-4 md:mt-0">
+                        <span class="text-xs font-sans text-gray-400">6名利用時 1名あたり</span>
+                        <p class="text-2xl font-bold text-[#E67E22]">5,500円<span class="text-sm font-normal">〜</span></p>
                     </div>
                 </div>
 
-                <div class="bg-[#F5F5F0] p-8 rounded-3xl text-center">
-                    <p class="font-sans-jp text-sm mb-2 text-gray-500">Total Budget</p>
-                    <p class="text-3xl md:text-4xl font-bold">お一人様 約 <span class="text-[#8C7654]">11,000</span> 円 〜</p>
-                    <p class="text-xs mt-4 text-gray-400 leading-relaxed">
-                        ※レストラン＋二次会＋代行帰宅より、<br class="md:hidden">圧倒的に豊かで気楽な選択です。
+                <div class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-gray-100">
+                    <div class="text-center md:text-left">
+                        <h4 class="text-xl font-bold">出張料理</h4>
+                        <p class="font-sans text-sm text-gray-500 mt-1">ディナー＋翌朝の準備も含む</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <span class="text-xs font-sans text-gray-400">1名あたり目安</span>
+                        <p class="text-2xl font-bold text-[#E67E22]">5,500円<span class="text-sm font-normal">〜</span></p>
+                    </div>
+                </div>
+
+                <div class="bg-[#2C3E50] text-white p-10 rounded-2xl text-center">
+                    <p class="font-sans text-xs tracking-widest mb-2 opacity-60">TOTAL COST ESTIMATE</p>
+                    <p class="text-4xl font-bold">お一人様 <span class="text-[#E67E22]">11,000円</span> 〜</p>
+                    <p class="text-xs font-sans mt-6 opacity-60 leading-relaxed">
+                        ※定員最大6名。1日2組限定の隠れ家お宿です。<br>
+                        誰にも邪魔されない「本音の時間」への投資。
                     </p>
                 </div>
             </div>
@@ -273,53 +274,55 @@
     <!-- Action -->
     <section class="py-40 px-6 text-center">
         <div class="max-w-4xl mx-auto space-y-12">
-            <h2 class="text-4xl md:text-6xl leading-tight kinetic-text">次の女子会は、<br>ここを予約しませんか？</h2>
-            <p class="text-gray-500 font-sans-jp kinetic-text">1日限定2組、姫路の隠れ家。まずは空き状況の確認から。</p>
+            <h2 class="text-4xl md:text-6xl leading-tight reveal">
+                「次はここにしよっか」<br>その一言が、最高の始まり。
+            </h2>
+            <p class="font-sans text-gray-500 reveal" style="transition-delay: 0.2s">
+                姫路に住んでいるからこそ楽しめる、帰らなくていい女子会。<br>
+                まずは空き状況をお問い合わせください。
+            </p>
             
-            <div class="pt-8 kinetic-text">
-                <a href="https://besso.hyogo.jp/" target="_blank" class="cta-button inline-block text-xl font-sans-jp tracking-widest">
-                    空き状況を確認する
+            <div class="pt-8 reveal" style="transition-delay: 0.4s">
+                <a href="https://besso.hyogo.jp/" class="btn-cta inline-block text-xl font-bold tracking-widest font-sans">
+                    空き状況をチェックする
                 </a>
-            </div>
-            
-            <div class="flex justify-center space-x-12 pt-24 kinetic-text opacity-50 text-sm tracking-widest font-sans-jp">
-                <a href="#" class="hover:text-[#8C7654] transition">INSTAGRAM</a>
-                <a href="#" class="hover:text-[#8C7654] transition">OFFICIAL SITE</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-white text-center text-xs text-gray-400 font-sans-jp tracking-widest">
-        <p>&copy; BESSO HIMEJI. ALL RIGHTS RESERVED.</p>
+    <footer class="py-12 bg-white border-t border-gray-100 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="font-sans text-xs text-gray-400 tracking-widest uppercase">
+                &copy; BESSO HIMEJI. Since 2021.
+            </p>
+        </div>
     </footer>
 
     <script>
-        // Kinetic Typography & Scroll Animation logic
+        // Scroll Reveal Animation Logic
         const observerOptions = {
-            threshold: 0.15,
+            threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.classList.add('active');
                 }
             });
         }, observerOptions);
 
-        // Apply observer to kinetic text elements
-        document.querySelectorAll('.kinetic-text').forEach(el => {
+        document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
 
-        // Initial load for hero elements
-        window.addEventListener('load', () => {
+        // Initialize animations on load
+        window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.getElementById('hero-main').classList.add('visible');
-                document.getElementById('hero-sub').classList.add('visible');
-            }, 300);
+                document.querySelectorAll('header .reveal').forEach(el => el.classList.add('active'));
+            }, 100);
         });
     </script>
 </body>
