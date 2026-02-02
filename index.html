@@ -3,307 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Besso姫路 | 帰らなくていい、特別な女子会</title>
+    <title>Besso姫路 | 静寂と贅沢、出張料理人と過ごす一夜</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@200;400;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-main: #2C3E50;
-            --color-accent: #E67E22;
-            --color-bg: #F9F9F7;
-            --color-text: #333333;
+            --color-bg: #FFFFFF;
+            --color-ink: #1A1A1A;
+            --color-accent: #C5A059; /* シャンパンゴールド */
+            --transition-slow: 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         body {
             font-family: 'Shippori Mincho', serif;
             background-color: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.8;
+            color: var(--color-ink);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .font-sans { font-family: 'Noto Sans JP', sans-serif; }
+        .font-serif-en { font-family: 'Bodoni Moda', serif; }
+        .font-noto { font-family: 'Noto Serif JP', serif; }
 
-        /* Bento UI Grid Settings */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 240px;
-            gap: 1.5rem;
+        /* Noise Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3私%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 200px;
-                gap: 1rem;
-            }
+        /* Vertical Typography */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
         }
 
-        .bento-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            background: #fff;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .bento-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .bento-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .bento-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(44, 62, 80, 0.8) 0%, transparent 60%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
-            color: white;
-            opacity: 0.9;
-            transition: opacity 0.3s ease;
-        }
-
-        .bento-item:hover .bento-overlay {
-            opacity: 1;
-            background: linear-gradient(to top, rgba(230, 126, 34, 0.9) 0%, transparent 80%);
-        }
-
-        /* Animation */
+        /* Micro-interactions */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* CTA Button */
-        .btn-cta {
-            background-color: var(--color-accent);
+        .slow-fade-in {
+            animation: fadeIn var(--transition-slow) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Luxury Button */
+        .btn-luxury {
+            position: relative;
+            padding: 1.5rem 4rem;
+            border: 1px solid var(--color-ink);
+            background: transparent;
+            transition: var(--transition-slow);
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-luxury::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--color-ink);
+            transition: var(--transition-slow);
+            z-index: -1;
+        }
+        .btn-luxury:hover {
             color: white;
-            padding: 1.25rem 3rem;
-            border-radius: 9999px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(230, 126, 34, 0.4);
-        }
-        .btn-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(230, 126, 34, 0.5);
-            background-color: #d35400;
         }
+        .btn-luxury:hover::before {
+            left: 0;
+        }
+
+        /* Image Mask Animation */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-container img {
+            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Horizontal/Vertical Line elements */
+        .line-v { width: 1px; background-color: var(--color-ink); height: 100px; margin: 0 auto; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--color-ink); }
     </style>
 </head>
 <body>
 
+    <!-- Loading Overlay (Experience) -->
+    <div id="loader" class="fixed inset-0 bg-white z-[10000] flex items-center justify-center transition-opacity duration-1000">
+        <p class="font-serif-en text-2xl tracking-[0.5em] animate-pulse">BESSO HIMEJI</p>
+    </div>
+
+    <!-- Navigation (Minimal) -->
+    <nav class="fixed top-0 left-0 w-full p-10 z-50 flex justify-between items-start pointer-events-none">
+        <div class="pointer-events-auto">
+            <p class="font-serif-en text-xl tracking-tighter font-bold">B.</p>
+        </div>
+        <div class="vertical-text pointer-events-auto text-[10px] tracking-[0.3em] font-light">
+            SCROLL TO EXPLORE
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1590523741477-2484c01f6e43?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Besso姫路 空間" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/40"></div>
+    <section class="relative h-screen bg-[#F2F2F2] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Luxury Interior" class="w-full h-full object-cover opacity-80 scale-110" id="hero-img">
         </div>
         
-        <div class="relative z-10 text-center text-white px-6">
-            <p class="font-sans tracking-[0.4em] text-sm md:text-base mb-8 reveal">HIMEJI PRIVATE VILLA EXPERIENCE</p>
-            <h1 class="text-5xl md:text-7xl leading-tight mb-12 reveal" style="transition-delay: 0.2s">
-                帰らなくていい、<br><span class="text-[#E67E22]">女子会。</span>
-            </h1>
-            <div class="w-px h-24 bg-white/50 mx-auto reveal" style="transition-delay: 0.4s"></div>
+        <div class="relative z-10 text-center">
+            <div class="mb-12 flex justify-center space-x-20 items-start h-80">
+                <h1 class="vertical-text text-5xl md:text-7xl tracking-[0.2em] leading-relaxed pt-12">
+                    帰らなくていい、<br><span class="text-gray-500">女子会。</span>
+                </h1>
+                <p class="vertical-text font-serif-en text-sm tracking-[0.5em] mt-32 italic">The Private Sanctuary</p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-20 left-1/2 -translate-x-1/2 text-center">
+            <div class="line-v animate-bounce"></div>
         </div>
     </section>
 
-    <!-- Problem (PASONA) -->
-    <section class="py-32 bg-[#2C3E50] text-white overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-6 block reveal">PROBLEM</span>
-            <h2 class="text-3xl md:text-4xl leading-relaxed mb-12 reveal">
-                22時を過ぎると、<br>どこかで「時計」を気にしていませんか？
-            </h2>
-            <div class="space-y-8 font-light text-gray-300 leading-loose reveal">
-                <p>いつものお店、いつもの流れ、終電前に解散。</p>
-                <p>姫路に住んでいるから、「泊まる」という発想自体がなかった。</p>
-                <p class="text-xl md:text-2xl text-white font-normal border-y border-white/10 py-8 inline-block">
-                    でも本当は、もう少し飲みたい。<br>もう少し話したい。ゆっくり過ごしたい。
+    <!-- Problem & Affinity -->
+    <section class="py-40 bg-white px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
+            <div class="w-full md:w-1/2 image-container reveal">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1000" 
+                     alt="Thoughtful Woman" class="w-full h-[600px] object-cover">
+            </div>
+            <div class="w-full md:w-1/2 reveal" style="transition-delay: 0.2s">
+                <span class="font-serif-en italic text-sm text-gray-400 mb-6 block">01. The Problem</span>
+                <h2 class="text-3xl md:text-4xl leading-loose mb-10">
+                    22時を過ぎると、<br>どこかで「時計」を<br>気にしていませんか？
+                </h2>
+                <div class="space-y-6 text-sm leading-loose text-gray-600 font-noto font-light">
+                    <p>いつものお店、いつもの流れ、終電前に解散。</p>
+                    <p>姫路に住んでいるから、「泊まる」という発想自体がなかったかもしれません。</p>
+                    <p>でも本当は、もう少し飲みたい。もう少し話したい。</p>
+                    <p>メイクを落として、パジャマ姿で、<br>朝まで本音で語り合う場所が、すぐ近くにあります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution: Private Chef -->
+    <section class="py-40 bg-[#1A1A1A] text-white">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <span class="font-serif-en italic text-sm text-gray-500 mb-8 block reveal tracking-widest">PRIVATE CHEF SERVICE</span>
+            <h2 class="text-4xl md:text-6xl mb-16 reveal font-light">おもてなしの、新境地。</h2>
+            <p class="text-sm font-noto font-light leading-loose text-gray-400 reveal mb-20">
+                レストランへ行くのではありません。<br>
+                あなたのためだけに、プロの料理人が「Besso」へ訪れます。<br>
+                お酒を持ち込み、好きな音楽をかけ、<br>
+                仕上がるまでの香りさえも、贅沢な時間の一部に。
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border-y border-white/10">
+            <!-- Style 01: Buffet -->
+            <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal">
+                <div class="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000" 
+                         alt="Buffet Style" class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10 text-center">
+                    <span class="font-serif-en text-xs tracking-[0.4em] text-gray-500 mb-4 block">STYLE 01</span>
+                    <h3 class="text-2xl mb-6 tracking-widest">ビュッフェ・スタイル</h3>
+                    <p class="text-xs font-light text-gray-400 leading-loose mb-10 max-w-xs mx-auto">
+                        色鮮やかな前菜からメインまで。自由なスタイルで、会話を途切れさせたくない夜にふさわしい選択。
+                    </p>
+                    <p class="font-serif-en text-xl text-[#C5A059]">Casual Luxury</p>
+                </div>
+            </div>
+
+            <!-- Style 02: Course -->
+            <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal" style="transition-delay: 0.2s">
+                <div class="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" 
+                         alt="Course Style" class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10 text-center">
+                    <span class="font-serif-en text-xs tracking-[0.4em] text-gray-500 mb-4 block">STYLE 02</span>
+                    <h3 class="text-2xl mb-6 tracking-widest">コース料理・スタイル</h3>
+                    <p class="text-xs font-light text-gray-400 leading-loose mb-10 max-w-xs mx-auto">
+                        旬の素材を、目の前で一皿ずつ。特別な記念日や、深い感謝を伝えたい女子会に。
+                    </p>
+                    <p class="font-serif-en text-xl text-[#C5A059]">Full Course Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Morning After -->
+    <section class="py-40 bg-white">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl md:text-5xl mb-10 font-light leading-tight">翌朝の朝食まで、<br>プロが仕立てる。</h2>
+                <p class="text-sm font-light leading-loose text-gray-600 mb-8 font-noto">
+                    「昨日は楽しかったね」<br>
+                    キッチンから漂うコーヒーと焼きたてのパンの香り。<br>
+                    片付けも、準備も、必要ありません。<br>
+                    ただゆっくりと、昨日の余韻を楽しみながら、<br>
+                    贅沢な朝をお過ごしください。
                 </p>
+                <div class="line-v !mx-0 !h-20"></div>
+            </div>
+            <div class="image-container reveal" style="transition-delay: 0.2s">
+                <img src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?auto=format&fit=crop&q=80&w=1200" 
+                     alt="Morning Breakfast" class="w-full h-[500px] object-cover">
             </div>
         </div>
     </section>
 
-    <!-- Affinity & Solution (Bento UI: Facilities) -->
-    <section class="py-32 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-20 text-center">
-                <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-4 block">FACILITIES</span>
-                <h2 class="text-4xl">雑誌の1ページのような、<br>非日常がすぐそばに。</h2>
+    <!-- Price Table (Offer) -->
+    <section class="py-40 bg-[#F9F9F7]">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="font-serif-en italic text-sm text-gray-400 mb-4 block tracking-widest">INVESTMENT</span>
+                <h2 class="text-4xl font-light">特別な体験を、現実的な選択に。</h2>
             </div>
 
-            <div class="bento-grid">
-                <!-- Living (Large) -->
-                <div class="bento-item col-span-2 row-span-2 reveal">
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1000" alt="リビングルーム">
-                    <div class="bento-overlay">
-                        <h3 class="text-2xl font-bold">LIVING</h3>
-                        <p class="font-sans text-sm mt-2">語り尽くせない夜を受け止める、開放的なダイニングとソファ。</p>
-                    </div>
-                </div>
-                <!-- Bath -->
-                <div class="bento-item col-span-2 row-span-1 reveal" style="transition-delay: 0.1s">
-                    <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=1000" alt="バスルーム">
-                    <div class="bento-overlay">
-                        <h3 class="text-xl font-bold">BATH</h3>
-                        <p class="font-sans text-sm mt-1">一日の疲れを癒す、清潔でモダンなバスルーム。</p>
-                    </div>
-                </div>
-                <!-- Bedroom -->
-                <div class="bento-item col-span-1 row-span-1 reveal" style="transition-delay: 0.2s">
-                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=1000" alt="ベッドルーム">
-                    <div class="bento-overlay">
-                        <h3 class="text-lg font-bold">BEDROOM</h3>
-                    </div>
-                </div>
-                <!-- Amenity -->
-                <div class="bento-item col-span-1 row-span-1 reveal" style="transition-delay: 0.3s">
-                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=1000" alt="アメニティ">
-                    <div class="bento-overlay">
-                        <h3 class="text-lg font-bold">AMENITY</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Catering Menu (Offer: Bento UI Style) -->
-    <section class="py-32 bg-[#F0F0EA] px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-20 text-center">
-                <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-4 block">CATERING MENU</span>
-                <h2 class="text-4xl">出張料理人による、<br>二人だけの極上レストラン</h2>
-            </div>
-
-            <div class="bento-grid">
-                <!-- Buffet Style -->
-                <div class="bento-item col-span-2 row-span-2 reveal">
-                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000" alt="ビュッフェスタイル">
-                    <div class="bento-overlay">
-                        <span class="bg-white/20 backdrop-blur-sm text-[10px] px-2 py-1 rounded-sm mb-2 w-fit">STYLE 01</span>
-                        <h3 class="text-2xl font-bold">ビュッフェ・スタイル</h3>
-                        <p class="font-sans text-sm mt-2">好きなものを好きなだけ。会話を遮らないカジュアルな贅沢。</p>
-                    </div>
-                </div>
-                <!-- Course Style -->
-                <div class="bento-item col-span-2 row-span-2 reveal" style="transition-delay: 0.1s">
-                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" alt="コース料理スタイル">
-                    <div class="bento-overlay">
-                        <span class="bg-white/20 backdrop-blur-sm text-[10px] px-2 py-1 rounded-sm mb-2 w-fit">STYLE 02</span>
-                        <h3 class="text-2xl font-bold">コース・スタイル</h3>
-                        <p class="font-sans text-sm mt-2">目の前で仕上げる美食。特別な夜にふさわしい本格コース。</p>
-                    </div>
-                </div>
-                <!-- Morning -->
-                <div class="bento-item col-span-4 row-span-1 reveal" style="transition-delay: 0.2s">
-                    <div class="absolute inset-0 flex items-center justify-between px-12 z-20 pointer-events-none">
-                        <div class="text-white max-w-md">
-                            <h3 class="text-2xl font-bold mb-2">Morning After</h3>
-                            <p class="font-sans text-sm">翌朝の朝食まで、出張料理人がサポート。片付けを気にせず、コーヒーの香りで目覚める幸せ。</p>
+            <div class="bg-white p-12 md:p-20 shadow-sm border border-gray-100 reveal">
+                <div class="space-y-12">
+                    <div class="flex justify-between items-end border-b border-gray-100 pb-6">
+                        <div>
+                            <p class="text-lg mb-1">宿泊プラン（1棟貸切）</p>
+                            <p class="text-[10px] text-gray-400 tracking-widest">PRIVATE VILLA STAY</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-gray-400">6名利用時 1名あたり</p>
+                            <p class="text-2xl font-serif-en">¥5,500 <span class="text-xs">/ person</span></p>
                         </div>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?auto=format&fit=crop&q=80&w=1500" alt="朝食" class="brightness-75">
+
+                    <div class="flex justify-between items-end border-b border-gray-100 pb-6">
+                        <div>
+                            <p class="text-lg mb-1">出張料理（夕・朝対応）</p>
+                            <p class="text-[10px] text-gray-400 tracking-widest">CHEF'S CATERING</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-gray-400">1名あたり目安</p>
+                            <p class="text-2xl font-serif-en">¥5,500 <span class="text-xs">/ person</span></p>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 text-center">
+                        <p class="text-[10px] text-gray-400 tracking-[0.5em] mb-4">TOTAL ESTIMATE</p>
+                        <p class="text-5xl font-serif-en text-[#1A1A1A] mb-4">¥11,000<span class="text-sm">〜</span></p>
+                        <p class="text-[10px] text-gray-400 font-noto">※税別。飲物代別途（持込自由）。</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing (Narrow down) -->
-    <section class="py-32 px-6">
-        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-12 md:p-20 shadow-xl reveal">
-            <div class="text-center mb-16">
-                <span class="font-sans text-xs tracking-widest text-[#E67E22] mb-4 block">PRICING</span>
-                <h2 class="text-3xl">実は、現実的な賢い選択。</h2>
-                <p class="font-sans text-gray-400 mt-4">レストラン＋二次会＋移動代と比べてください</p>
+    <!-- Call to Action -->
+    <section class="py-60 bg-white text-center px-6">
+        <div class="max-w-4xl mx-auto space-y-16 reveal">
+            <div class="flex flex-col items-center">
+                <p class="vertical-text text-xl tracking-[1em] mb-12">「次はここにしよっか」</p>
+                <h2 class="text-3xl md:text-5xl font-light leading-tight">
+                    その一言が、最高の物語の始まり。
+                </h2>
             </div>
-
-            <div class="space-y-8">
-                <div class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-gray-100">
-                    <div class="text-center md:text-left">
-                        <h4 class="text-xl font-bold">宿泊料金</h4>
-                        <p class="font-sans text-sm text-gray-500 mt-1">平日：33,000円／休日前：45,100円（一棟）</p>
-                    </div>
-                    <div class="mt-4 md:mt-0">
-                        <span class="text-xs font-sans text-gray-400">6名利用時 1名あたり</span>
-                        <p class="text-2xl font-bold text-[#E67E22]">5,500円<span class="text-sm font-normal">〜</span></p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-gray-100">
-                    <div class="text-center md:text-left">
-                        <h4 class="text-xl font-bold">出張料理</h4>
-                        <p class="font-sans text-sm text-gray-500 mt-1">ディナー＋翌朝の準備も含む</p>
-                    </div>
-                    <div class="mt-4 md:mt-0">
-                        <span class="text-xs font-sans text-gray-400">1名あたり目安</span>
-                        <p class="text-2xl font-bold text-[#E67E22]">5,500円<span class="text-sm font-normal">〜</span></p>
-                    </div>
-                </div>
-
-                <div class="bg-[#2C3E50] text-white p-10 rounded-2xl text-center">
-                    <p class="font-sans text-xs tracking-widest mb-2 opacity-60">TOTAL COST ESTIMATE</p>
-                    <p class="text-4xl font-bold">お一人様 <span class="text-[#E67E22]">11,000円</span> 〜</p>
-                    <p class="text-xs font-sans mt-6 opacity-60 leading-relaxed">
-                        ※定員最大6名。1日2組限定の隠れ家お宿です。<br>
-                        誰にも邪魔されない「本音の時間」への投資。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Action -->
-    <section class="py-40 px-6 text-center">
-        <div class="max-w-4xl mx-auto space-y-12">
-            <h2 class="text-4xl md:text-6xl leading-tight reveal">
-                「次はここにしよっか」<br>その一言が、最高の始まり。
-            </h2>
-            <p class="font-sans text-gray-500 reveal" style="transition-delay: 0.2s">
-                姫路に住んでいるからこそ楽しめる、帰らなくていい女子会。<br>
-                まずは空き状況をお問い合わせください。
-            </p>
             
-            <div class="pt-8 reveal" style="transition-delay: 0.4s">
-                <a href="https://besso.hyogo.jp/" class="btn-cta inline-block text-xl font-bold tracking-widest font-sans">
-                    空き状況をチェックする
+            <p class="text-sm font-noto font-light text-gray-500 tracking-widest">
+                1日2組限定。姫路の隠れ家で、帰らなくていい一夜を。
+            </p>
+
+            <div class="pt-10">
+                <a href="https://besso.hyogo.jp/" class="btn-luxury inline-block font-noto text-xs tracking-[0.3em]">
+                    空き状況を問い合わせる
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-white border-t border-gray-100 text-center">
+    <footer class="py-20 bg-white border-t border-gray-50 text-center">
         <div class="max-w-4xl mx-auto px-6">
-            <p class="font-sans text-xs text-gray-400 tracking-widest uppercase">
-                &copy; BESSO HIMEJI. Since 2021.
+            <p class="font-serif-en text-[10px] text-gray-400 tracking-[0.6em] uppercase">
+                &copy; BESSO HIMEJI. Established 2021.
             </p>
         </div>
     </footer>
 
     <script>
-        // Scroll Reveal Animation Logic
+        // Page Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 1000);
+        });
+
+        // Intersection Observer for Scroll Reveals
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
+            rootMargin: "0px 0px -100px 0px"
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -318,11 +347,13 @@
             observer.observe(el);
         });
 
-        // Initialize animations on load
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelectorAll('header .reveal').forEach(el => el.classList.add('active'));
-            }, 100);
+        // Hero Image Subtle Parallax
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.getElementById('hero-img');
+            if (heroImg) {
+                heroImg.style.transform = `scale(1.1) translateY(${scrolled * 0.1}px)`;
+            }
         });
     </script>
 </body>
