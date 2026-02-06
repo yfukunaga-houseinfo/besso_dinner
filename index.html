@@ -126,7 +126,6 @@
 
     <!-- Hero Section -->
     <section class="relative h-screen bg-white flex items-center justify-center overflow-hidden">
-        <!-- Main Visual: .jpg 形式に戻しました -->
         <div class="absolute inset-0">
             <img src="images/S2-041.jpg" 
                  alt="Besso Himeji Main Visual" 
@@ -156,8 +155,10 @@
     <section class="py-40 bg-white px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
             <div class="w-full md:w-1/2 image-container reveal">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1000" 
-                     alt="Thoughtful moment" class="w-full h-[600px] object-cover">
+                <!-- 指定画像 images/party1.png に変更 -->
+                <img src="images/party1.png" 
+                     alt="女子会を楽しむ様子" class="w-full h-[600px] object-cover"
+                     onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1000'">
             </div>
             <div class="w-full md:w-1/2 reveal" style="transition-delay: 0.2s">
                 <span class="font-serif-en italic text-sm text-gray-400 mb-6 block tracking-widest uppercase">01. THE PROBLEM</span>
@@ -190,7 +191,6 @@
             <!-- Style 01: Buffet -->
             <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal">
                 <div class="absolute inset-0 opacity-30 transition-opacity group-hover:opacity-60">
-                    <!-- .png 形式を維持 -->
                     <img src="images/buffet1.png" 
                          alt="Buffet Style" class="w-full h-full object-cover">
                 </div>
@@ -207,7 +207,6 @@
             <!-- Style 02: Course -->
             <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal" style="transition-delay: 0.2s">
                 <div class="absolute inset-0 opacity-30 transition-opacity group-hover:opacity-60">
-                    <!-- .png 形式を維持 -->
                     <img src="images/dinner1.png" 
                          alt="Course Style" class="w-full h-full object-cover">
                 </div>
@@ -291,11 +290,11 @@
             <div class="flex flex-col items-center">
                 <p class="vertical-text text-xl tracking-[1em] mb-12">「次はここにしよっか」</p>
                 <h2 class="text-3xl md:text-5xl font-light leading-tight">
-                    その一言が, 最高の物語の始まり。
+                    その一言が、最高の物語の始まり。
                 </h2>
             </div>
             <p class="text-sm font-noto font-light text-gray-500 tracking-widest">
-                1日2組限定。姫路の隠れ家で, 帰らなくていい一夜を。
+                1日2組限定。姫路の隠れ家で、帰らなくていい一夜を。
             </p>
             <div class="pt-10">
                 <a href="https://besso.hyogo.jp/" class="btn-luxury inline-block font-noto text-xs tracking-[0.3em]">
