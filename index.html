@@ -38,7 +38,7 @@
             opacity: 0.04;
             pointer-events: none;
             z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3私%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         /* Vertical Typography */
@@ -137,16 +137,18 @@
     <!-- Hero Section -->
     <section class="relative h-screen bg-[#F2F2F2] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Luxury Interior" class="w-full h-full object-cover opacity-80 scale-110" id="hero-img">
+            <!-- ユーザー指定画像に変更 -->
+            <img src="S2-041.jpg" 
+                 alt="Besso Himeji Interior" class="w-full h-full object-cover opacity-90 scale-110" id="hero-img"
+                 onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000'">
         </div>
         
         <div class="relative z-10 text-center">
             <div class="mb-12 flex justify-center space-x-20 items-start h-80">
-                <h1 class="vertical-text text-5xl md:text-7xl tracking-[0.2em] leading-relaxed pt-12">
-                    帰らなくていい、<br><span class="text-gray-500">女子会。</span>
+                <h1 class="vertical-text text-5xl md:text-7xl tracking-[0.2em] leading-relaxed pt-12 bg-white/20 backdrop-blur-sm px-4">
+                    帰らなくていい、<br><span class="text-gray-800">女子会。</span>
                 </h1>
-                <p class="vertical-text font-serif-en text-sm tracking-[0.5em] mt-32 italic">The Private Sanctuary</p>
+                <p class="vertical-text font-serif-en text-sm tracking-[0.5em] mt-32 italic text-gray-700">The Private Sanctuary</p>
             </div>
         </div>
 
