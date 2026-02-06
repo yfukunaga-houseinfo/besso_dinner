@@ -126,13 +126,11 @@
 
     <!-- Hero Section -->
     <section class="relative h-screen bg-white flex items-center justify-center overflow-hidden">
-        <!-- Main Visual: images/S2-041.jpg -->
+        <!-- Main Visual -->
         <div class="absolute inset-0">
             <img src="images/S2-041.jpg" 
                  alt="Besso Himeji Main Visual" 
-                 class="w-full h-full object-cover opacity-95" id="hero-img"
-                 onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-100');">
-            <!-- Overlay for legibility -->
+                 class="w-full h-full object-cover opacity-95" id="hero-img">
             <div class="absolute inset-0 bg-white/5 pointer-events-none"></div>
         </div>
         
@@ -162,7 +160,7 @@
                      alt="Thoughtful moment" class="w-full h-[600px] object-cover">
             </div>
             <div class="w-full md:w-1/2 reveal" style="transition-delay: 0.2s">
-                <span class="font-serif-en italic text-sm text-gray-400 mb-6 block tracking-widest">01. THE PROBLEM</span>
+                <span class="font-serif-en italic text-sm text-gray-400 mb-6 block tracking-widest uppercase">01. THE PROBLEM</span>
                 <h2 class="text-3xl md:text-4xl leading-loose mb-10">
                     22時を過ぎると、<br>どこかで「時計」を<br>気にしていませんか？
                 </h2>
@@ -179,7 +177,7 @@
     <!-- The Solution: Private Chef -->
     <section class="py-40 bg-[#1A1A1A] text-white">
         <div class="max-w-4xl mx-auto text-center px-6">
-            <span class="font-serif-en italic text-sm text-gray-500 mb-8 block reveal tracking-widest">PRIVATE CHEF SERVICE</span>
+            <span class="font-serif-en italic text-sm text-gray-500 mb-8 block reveal tracking-widest uppercase">PRIVATE CHEF SERVICE</span>
             <h2 class="text-4xl md:text-6xl mb-16 reveal font-light">おもてなしの、新境地。</h2>
             <p class="text-sm font-noto font-light leading-loose text-gray-400 reveal mb-20">
                 レストランへ行くのではありません。<br>
@@ -191,14 +189,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border-y border-white/10">
             <!-- Style 01: Buffet -->
             <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal">
-                <div class="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40">
-                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000" 
+                <div class="absolute inset-0 opacity-30 transition-opacity group-hover:opacity-60">
+                    <!-- 指定画像 images/buffet1.jpg を反映 -->
+                    <img src="images/buffet1.jpg" 
                          alt="Buffet Style" class="w-full h-full object-cover">
                 </div>
                 <div class="relative z-10 text-center">
                     <span class="font-serif-en text-xs tracking-[0.4em] text-gray-500 mb-4 block">STYLE 01</span>
                     <h3 class="text-2xl mb-6 tracking-widest">ビュッフェ・スタイル</h3>
-                    <p class="text-xs font-light text-gray-400 leading-loose mb-10 max-w-xs mx-auto">
+                    <p class="text-xs font-light text-gray-100 leading-loose mb-10 max-w-xs mx-auto drop-shadow-md">
                         色鮮やかな前菜からメインまで。自由なスタイルで、会話を途切れさせたくない夜にふさわしい選択。
                     </p>
                     <p class="font-serif-en text-xl text-[#C5A059]">Casual Luxury</p>
@@ -207,14 +206,15 @@
 
             <!-- Style 02: Course -->
             <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal" style="transition-delay: 0.2s">
-                <div class="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40">
-                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" 
+                <div class="absolute inset-0 opacity-30 transition-opacity group-hover:opacity-60">
+                    <!-- 指定画像 images/dinner1.jpg を反映 -->
+                    <img src="images/dinner1.jpg" 
                          alt="Course Style" class="w-full h-full object-cover">
                 </div>
                 <div class="relative z-10 text-center">
                     <span class="font-serif-en text-xs tracking-[0.4em] text-gray-500 mb-4 block">STYLE 02</span>
                     <h3 class="text-2xl mb-6 tracking-widest">コース料理・スタイル</h3>
-                    <p class="text-xs font-light text-gray-400 leading-loose mb-10 max-w-xs mx-auto">
+                    <p class="text-xs font-light text-gray-100 leading-loose mb-10 max-w-xs mx-auto drop-shadow-md">
                         旬の素材を、目の前で一皿ずつ。特別な記念日や、深い感謝を伝えたい女子会に。
                     </p>
                     <p class="font-serif-en text-xl text-[#C5A059]">Full Course Experience</p>
