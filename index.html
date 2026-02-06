@@ -119,20 +119,21 @@
         <div class="pointer-events-auto">
             <p class="font-serif-en text-xl tracking-tighter font-bold">B.</p>
         </div>
-        <div class="vertical-text pointer-events-auto text-[10px] tracking-[0.3em] font-light">
+        <div class="vertical-text pointer-events-auto text-[10px] tracking-[0.3em] font-light text-gray-400">
             SCROLL TO EXPLORE
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="relative h-screen bg-white flex items-center justify-center overflow-hidden">
-        <!-- Main Visual: S2-041.jpg -->
+        <!-- Main Visual: images/S2-041.jpg -->
         <div class="absolute inset-0">
-            <img src="S2-041.jpg" 
+            <img src="images/S2-041.jpg" 
                  alt="Besso Himeji Main Visual" 
-                 class="w-full h-full object-cover opacity-95" id="hero-img">
-            <!-- 視認性向上のためのオーバーレイ -->
-            <div class="absolute inset-0 bg-white/10 pointer-events-none"></div>
+                 class="w-full h-full object-cover opacity-95" id="hero-img"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-100');">
+            <!-- Overlay for legibility -->
+            <div class="absolute inset-0 bg-white/5 pointer-events-none"></div>
         </div>
         
         <div class="relative z-10 w-full h-full flex items-center justify-center">
@@ -157,12 +158,11 @@
     <section class="py-40 bg-white px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
             <div class="w-full md:w-1/2 image-container reveal">
-                <!-- サブ画像：落ち着いた女性のイメージ -->
                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1000" 
                      alt="Thoughtful moment" class="w-full h-[600px] object-cover">
             </div>
             <div class="w-full md:w-1/2 reveal" style="transition-delay: 0.2s">
-                <span class="font-serif-en italic text-sm text-gray-400 mb-6 block">01. The Problem</span>
+                <span class="font-serif-en italic text-sm text-gray-400 mb-6 block tracking-widest">01. THE PROBLEM</span>
                 <h2 class="text-3xl md:text-4xl leading-loose mb-10">
                     22時を過ぎると、<br>どこかで「時計」を<br>気にしていませんか？
                 </h2>
@@ -184,7 +184,7 @@
             <p class="text-sm font-noto font-light leading-loose text-gray-400 reveal mb-20">
                 レストランへ行くのではありません。<br>
                 あなたのためだけに、プロの料理人が「Besso」へ訪れます。<br>
-                お酒を持ち込み、好きな音楽をかけ、仕上がるまでの香りさえも、贅沢な時間の一部に。
+                仕上がるまでの香りさえも、贅沢な時間の一部に。
             </p>
         </div>
 
@@ -193,7 +193,7 @@
             <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal">
                 <div class="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40">
                     <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000" 
-                         alt="Buffet Style Dish" class="w-full h-full object-cover">
+                         alt="Buffet Style" class="w-full h-full object-cover">
                 </div>
                 <div class="relative z-10 text-center">
                     <span class="font-serif-en text-xs tracking-[0.4em] text-gray-500 mb-4 block">STYLE 01</span>
@@ -209,7 +209,7 @@
             <div class="group relative py-32 px-12 bg-[#1A1A1A] overflow-hidden reveal" style="transition-delay: 0.2s">
                 <div class="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40">
                     <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000" 
-                         alt="Course Style Fine Dining" class="w-full h-full object-cover">
+                         alt="Course Style" class="w-full h-full object-cover">
                 </div>
                 <div class="relative z-10 text-center">
                     <span class="font-serif-en text-xs tracking-[0.4em] text-gray-500 mb-4 block">STYLE 02</span>
@@ -238,7 +238,7 @@
             </div>
             <div class="image-container reveal" style="transition-delay: 0.2s">
                 <img src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?auto=format&fit=crop&q=80&w=1200" 
-                     alt="Breakfast setting" class="w-full h-[500px] object-cover">
+                     alt="Breakfast" class="w-full h-[500px] object-cover">
             </div>
         </div>
     </section>
@@ -247,7 +247,7 @@
     <section class="py-40 bg-[#F9F9F7]">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-20 reveal">
-                <span class="font-serif-en italic text-sm text-gray-400 mb-4 block tracking-widest">INVESTMENT</span>
+                <span class="font-serif-en italic text-sm text-gray-400 mb-4 block tracking-widest uppercase">Investment</span>
                 <h2 class="text-4xl font-light">特別な体験を、現実的な選択に。</h2>
             </div>
 
@@ -347,8 +347,7 @@
             const scrolled = window.pageYOffset;
             const heroImg = document.getElementById('hero-img');
             if (heroImg) {
-                // Slower scroll for a more elegant feel
-                heroImg.style.transform = `translateY(${scrolled * 0.15}px)`;
+                heroImg.style.transform = `translateY(${scrolled * 0.1}px)`;
             }
         });
     </script>
